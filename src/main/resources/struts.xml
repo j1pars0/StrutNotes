@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 6.0//EN"
+        "https://struts.apache.org/dtds/struts-6.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="true" />
+    
+    <constant 
+        name="struts.allowlist.packageNames" 
+        value="uk.co.jamesrparsons.strutnotes.model,uk.co.jamesrparsons.strutnotes.action,uk.co.jamesrparsons.strutnotes.repository"/> 
+    
+    <package name="strutnotes" extends="struts-default">
+        <action name="/">
+            <result>
+                /index.action
+            </result>
+        </action>
+                
+        <action name="index">
+            <result>/WEB-INF/index.jsp</result>
+        </action>
+
+        <action name="notelist" class="uk.co.jamesrparsons.strutnotes.action.NotelistAction" method="execute">
+            <result name="success">/notelist.jsp</result>
+        </action>
+    </package>
+</struts>
