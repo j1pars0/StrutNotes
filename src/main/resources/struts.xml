@@ -21,7 +21,7 @@
         </action>
 
         <action name="notelist" class="uk.co.jamesrparsons.strutnotes.action.NotelistAction" method="execute">
-            <result name="success">/notelist.jsp</result>
+            <result name="success">/WEB-INF/notelist.jsp</result>
         </action>
     </package>
 </struts>

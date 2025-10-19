@@ -4,10 +4,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Basic Struts Application - Welcome</title>
+        <title>Welcome</title>
     </head>
     <body>
-        <h1>Welcome To Struts!</h1>
-        <p><a href="<s:url action='hello'/>">Hello World</a></p>
+        <h1><a href="<s:url action='notelist'/>">Notes List</a></h1>
     </body>
 </html>
