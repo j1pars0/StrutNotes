@@ -32,8 +32,27 @@ public class Notes {
                 notes.add(note);
             }
         }
-        
         return notes;
+    }
+    
+    public static NoteDTO getNote(int id) {
+        NoteDTO noteDto = new NoteDTO();
+        NoteDTO note = notes.get(id - 1);
+        noteDto.setId(note.getId());
+        noteDto.setNoteName(note.getNoteName());
+        noteDto.setNoteContent(note.getNoteContent());
+        noteDto.setCreateDate(note.getCreateDate());
+        noteDto.setModifyDate(note.getModifyDate());
+        return noteDto;
+    }
+    
+    public static void setNote(NoteDTO note) {
+        if (note.getId() == 0) {
+            note.setId(notes.size());
+            notes.add(note);
+        } else {
+            notes.set(note.getId()-1, note);
+        }
     }
     
 }

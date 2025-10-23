@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <s:head />
     </head>
 
     <body>
@@ -18,9 +19,13 @@
         <table>
             <s:iterator value="notes" var="note" >
             <tr>
-                <td><s:property value="note.id" /></td>
-                <td><s:property value="note.noteName" /></td>
-                <td><s:property value="note.noteContent" /></td>
+                <s:url action="inputNotemaint" var="mainturl">
+                    <s:param name="note.id" value="id"/>
+                </s:url>
+                <td>${note.id}</td>
+                <td>${note.noteName}</td>
+                <td>${note.noteContent}</td>
+                <td><a href="<s:property value="#mainturl"/>">Modify</a></td>
             </<tr>
             </s:iterator>
         </table>

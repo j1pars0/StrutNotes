@@ -4,6 +4,7 @@
         "https://struts.apache.org/dtds/struts-6.0.dtd">
 <struts>
     <constant name="struts.devMode" value="true" />
+    <constant name="struts.mapper.action.prefix.enabled" value="true" />
     
     <constant 
         name="struts.allowlist.packageNames" 
@@ -16,12 +17,20 @@
             </result>
         </action>
                 
-        <action name="index">
-            <result>/WEB-INF/index.jsp</result>
-        </action>
-
-        <action name="notelist" class="uk.co.jamesrparsons.strutnotes.action.NotelistAction" method="execute">
+ 
+        <action name="index" 
+                class="uk.co.jamesrparsons.strutnotes.action.NoteMaintAction" 
+                method="list">
             <result name="success">/WEB-INF/notelist.jsp</result>
+            <interceptor-ref name="basicStack" />
+        </action>
+        
+        <action name="*Notemaint" 
+                class="uk.co.jamesrparsons.strutnotes.action.NoteMaintAction" 
+                method="{1}">
+            <interceptor-ref name="paramsPrepareParamsStack" />
+            <result name="input">/WEB-INF/note.jsp</result>
+            <result name="success" type="redirectAction" >index</result>
         </action>
     </package>
 </struts>

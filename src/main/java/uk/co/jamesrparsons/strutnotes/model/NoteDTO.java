@@ -10,7 +10,7 @@ import java.util.List;
  * @author Jimbob
  */
 public class NoteDTO {
-    private long id;
+    private int id;
     private String noteName;
     private String noteContent;
     private List<CategoryDTO> categories;
@@ -37,11 +37,11 @@ public class NoteDTO {
         this.ModifyDate = ModifyDate;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
