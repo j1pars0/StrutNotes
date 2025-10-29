@@ -6,8 +6,9 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="org.apache.struts2" level="debug"/>
+        <Logger name="org.apache.struts2" level="warn"/>
         <Logger name="uk.co.jamesrparsons" level="debug"/>
+        <logger name="org.h2" level="debug"/>
         <Root level="warn">
             <AppenderRef ref="STDOUT"/>
         </Root>

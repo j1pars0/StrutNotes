@@ -7,6 +7,6 @@
         <title>Welcome</title>
     </head>
     <body>
-        <h1><a href="<s:url action='notelist'/>">Notes List</a></h1>
+        <h1><a href="<s:url action='listNotemaint'/>">Notes List</a></h1>
     </body>
 </html>

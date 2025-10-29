@@ -13,7 +13,7 @@ import java.util.Date;
 public class CategoryDTO {
     private long id;
     private String categoryName;
-    private String categoryContent;
+    private String categoryDesc;
     private Date CreateDate;
     private Date ModifyDate;    
 
@@ -37,12 +37,12 @@ public class CategoryDTO {
         this.categoryName = categoryName;
     }
 
-    public String getCategoryContent() {
-        return categoryContent;
+    public String getCategoryDesc() {
+        return categoryDesc;
     }
 
-    public void setCategoryContent(String categoryContent) {
-        this.categoryContent = categoryContent;
+    public void setCategoryDesc(String categoryDesc) {
+        this.categoryDesc = categoryDesc;
     }
 
     public Date getCreateDate() {
