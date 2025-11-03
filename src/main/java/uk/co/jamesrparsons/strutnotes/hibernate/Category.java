@@ -7,9 +7,11 @@ package uk.co.jamesrparsons.strutnotes.hibernate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,14 +23,14 @@ import java.util.List;
 @Table(name="categories")
 public class Category {
     @Id   
-    @GeneratedValue 
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
     @Column(name="category_name", nullable=false)
     private String categoryName;
     @Column(name="category_desc", nullable=false)
     private String categoryDesc;
     @ManyToMany(mappedBy = "categories")
-    private List<Note> notes;
+    private List<Note> notes = new ArrayList<>();
     @Column(name="create_date", nullable=false)
     private Date createDate;
     @Column(name="modify_date", nullable=false)
@@ -39,11 +41,11 @@ public class Category {
         categoryDesc = "";
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

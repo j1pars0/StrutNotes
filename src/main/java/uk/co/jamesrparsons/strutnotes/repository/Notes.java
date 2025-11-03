@@ -5,6 +5,7 @@
 package uk.co.jamesrparsons.strutnotes.repository;
 
 import jakarta.persistence.EntityManager;
+import java.util.Date;
 
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -20,48 +21,7 @@ import uk.co.jamesrparsons.strutnotes.model.NoteDTO;
  */
 public class Notes {
     private static final Logger LOG = LogManager.getLogger(Notes.class);
-    /*
-    private static List<NoteDTO> notes;
-    
-    public static List<NoteDTO> getNotes() {
-        NoteDTO note;
-        Date now;
-        if (notes == null) {
-            notes = new ArrayList<>();
-            for (long i = 1; i <= 13; i++) {
-                now = new Date();
-                note = new NoteDTO();
-                note.setId(i);
-                note.setNoteName("Note " + i);
-                note.setNoteContent("Content " + i);
-                note.setCreateDate(now);
-                note.setModifyDate(now);
-                notes.add(note);
-            }
-        }
-        return notes;
-    }
-    
-    public static NoteDTO getNote(int id) {
-        NoteDTO noteDto = new NoteDTO();
-        NoteDTO note = notes.get(id - 1);
-        noteDto.setId(note.getId());
-        noteDto.setNoteName(note.getNoteName());
-        noteDto.setNoteContent(note.getNoteContent());
-        noteDto.setCreateDate(note.getCreateDate());
-        noteDto.setModifyDate(note.getModifyDate());
-        return noteDto;
-    }
-    
-    public static void setNote(NoteDTO note) {
-        if (note.getId() == 0) {
-            note.setId((long)notes.size());
-            notes.add(note);
-        } else {
-            notes.set(note.getId()-1, note);
-        }
-    }
-    */
+
     
     public static List<NoteDTO> getNotes() {
         List<NoteDTO> notesDTO = null;
@@ -80,6 +40,7 @@ public class Notes {
     public static NoteDTO getNote(long id) {
         NoteDTO noteDTO = null;
         Note note;
+        LOG.debug("Getting Note: " + id);
         try (EntityManager em = StrutNotesDB.getInstance()
                     .getEntityManagerFactory().createEntityManager()) {
             note = em.find(Note.class, id);
@@ -92,23 +53,37 @@ public class Notes {
         return noteDTO;
     }
     
+    /**
+     * Save the supplied Note Entity
+     * 
+     * @param noteDTO - The supplied note Entity 
+     */
     public static void setNote(NoteDTO noteDTO) {
         
-        Note note = EntityMapping.mapNoteDTONote(noteDTO);
+        Note note;
+        Date now = new Date();
         
         try (EntityManager em = StrutNotesDB.getInstance()
                     .getEntityManagerFactory().createEntityManager()) {
+            
             em.getTransaction().begin();
+
+            note = EntityMapping.mapNoteDTONote(noteDTO);
+            
+            note.setModifyDate(now);
             if (note.getId() > 0) {
+                LOG.debug("Modify Note: " + note);
                 em.merge(note);
             } else {
+                note.setCreateDate(now);
+                LOG.debug("Create Note: " + note);
                 em.persist(note);
+                LOG.debug("Created Note: " + note);
             }
             em.getTransaction().commit();
         }
         catch (Exception e) {
-            LOG.error("Error getting a note: " + e);
-        }
-        
+            LOG.error("Error setting a note: " + e);
+        }        
     }
 }

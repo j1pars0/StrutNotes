@@ -20,7 +20,7 @@
             <s:iterator value="notes" var="note" >
             <tr>
                 <s:url action="inputNotemaint" var="mainturl">
-                    <s:param name="note.id" value="id"/>
+                    <s:param name="note.id" value="%{#note.id}"/>
                 </s:url>
                 <td>${note.id}</td>
                 <td>${note.noteName}</td>
@@ -28,6 +28,12 @@
                 <td><a href="<s:property value="#mainturl"/>">Modify</a></td>
             </<tr>
             </s:iterator>
+            <tr>
+                <s:url action="inputNotemaint" var="newurl">
+                    <s:param name="note.id" value="0"/>
+                </s:url>
+                <td><a href="<s:property value="#newurl"/>" />New</a></td>
+            </tr>    
         </table>
     </body>
 </html>

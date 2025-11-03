@@ -5,6 +5,7 @@
 package uk.co.jamesrparsons.strutnotes.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -14,6 +15,8 @@ public class CategoryDTO {
     private long id;
     private String categoryName;
     private String categoryDesc;
+
+    private List<NoteDTO> notes;
     private Date CreateDate;
     private Date ModifyDate;    
 
@@ -59,6 +62,13 @@ public class CategoryDTO {
 
     public void setModifyDate(Date ModifyDate) {
         this.ModifyDate = ModifyDate;
+    }
+    public List<NoteDTO> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<NoteDTO> notes) {
+        this.notes = notes;
     }
     
 }

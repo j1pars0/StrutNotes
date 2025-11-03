@@ -32,8 +32,9 @@ public class StrutNotesDB {
     public EntityManagerFactory getEntityManagerFactory() {
         if(emf == null) {
             emf = Persistence.createEntityManagerFactory(DB_PU);
+            LOG.debug("factory created on: " + new Date());
         }
-        LOG.debug("factory created on: " + new Date());
+        LOG.debug("factory obtained: " + new Date());
         return emf;
     }
 
