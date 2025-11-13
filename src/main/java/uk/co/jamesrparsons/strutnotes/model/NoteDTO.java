@@ -1,6 +1,7 @@
 
 package uk.co.jamesrparsons.strutnotes.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,11 @@ public class NoteDTO {
     private List<CategoryDTO> categories;
     private Date CreateDate;
     private Date ModifyDate;
+    private SimpleDateFormat formatter;
     
     public NoteDTO() {
         categories = new ArrayList<>();
+        formatter = new SimpleDateFormat("HH:mm dd/MM/yy");
     }
 
     public Date getCreateDate() {
@@ -69,4 +72,11 @@ public class NoteDTO {
         this.categories = categories;
     }
     
+    public String getCreateDateFormatted() {
+        return formatter.format(CreateDate);
+    }
+    
+    public String getModifyDateFormatted() {
+        return formatter.format(ModifyDate);
+    }
 }
