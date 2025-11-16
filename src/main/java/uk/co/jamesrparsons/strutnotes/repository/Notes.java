@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package uk.co.jamesrparsons.strutnotes.repository;
 
 import jakarta.persistence.EntityManager;
@@ -86,4 +83,28 @@ public class Notes {
             LOG.error("Error setting a note: " + e);
         }        
     }
+    /**
+     * Delete the supplied Note Entity
+     * 
+     * @param noteDTO - The supplied note Entity 
+     */
+    public static void deleteNote(NoteDTO noteDTO) {
+        Note note;
+        
+        try (EntityManager em = StrutNotesDB.getInstance()
+                    .getEntityManagerFactory().createEntityManager()) {
+            
+            em.getTransaction().begin();
+            
+            note = em.find(Note.class, noteDTO.getId());
+
+            em.remove(note);
+            
+            em.getTransaction().commit();
+        }
+        catch (Exception e) {
+            LOG.error("Error setting a note: " + e);
+        }        
+    }
 }
+//End of file

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package uk.co.jamesrparsons.strutnotes.repository;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -11,8 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- *
- * @author james
+* Jakarta Persistence Factory Instance for Strutnotes database
  */
 public class StrutNotesDB {
     private final Logger LOG = LogManager.getLogger(StrutNotesDB.class);
@@ -24,11 +20,19 @@ public class StrutNotesDB {
 
     private StrutNotesDB() {}
 
+    /**
+     * Getter for the factory instance
+     * 
+     * @return 
+     */
     public static StrutNotesDB getInstance() {
         return singleton;
     }
-
-
+    /**
+     * Get an EntityManagerFactory if the singleton is null
+     * 
+     * @return 
+     */
     public EntityManagerFactory getEntityManagerFactory() {
         if(emf == null) {
             emf = Persistence.createEntityManagerFactory(DB_PU);
@@ -37,7 +41,9 @@ public class StrutNotesDB {
         LOG.debug("factory obtained: " + new Date());
         return emf;
     }
-
+    /**
+     * Close the EntityManagerFactory
+     */
     public void closeEmf() {
         if(emf.isOpen() || emf != null) {
             emf.close();
@@ -46,3 +52,4 @@ public class StrutNotesDB {
         LOG.debug("EMF closed at: " + new Date());
     }    
 }
+// End of file
