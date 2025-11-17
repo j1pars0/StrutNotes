@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package uk.co.jamesrparsons.strutnotes.repository;
 
 import jakarta.persistence.EntityManager;
@@ -16,13 +13,17 @@ import uk.co.jamesrparsons.strutnotes.mapping.EntityMapping;
 import uk.co.jamesrparsons.strutnotes.model.CategoryDTO;
 
 /**
- *
- * @author james
+ * A class that handles the data access to the Category Entity
+ * 
  */
 public class Categories {
     private static final Logger LOG = LogManager.getLogger(Categories.class);
 
-    
+    /**
+     * Get a list of the categories from the database
+     * 
+     * @return a List of CategoryDTO 
+     */
     public static List<CategoryDTO> getCategories() {
         List<CategoryDTO> categoriesDTO = null;
         List<Category> categories;
@@ -36,7 +37,13 @@ public class Categories {
         }
         return categoriesDTO;
     }
-    
+    /**
+     * Get a Category for a given id from the database
+     * 
+     * @param id a long containing the required id
+     * 
+     * @return required CategoryDTO 
+     */
     public static CategoryDTO getCategory(long id) {
         CategoryDTO categoryDTO = null;
         Category category;
@@ -52,14 +59,12 @@ public class Categories {
         
         return categoryDTO;
     }
-    
     /**
      * Save the supplied Category Entity
      * 
      * @param categoryDTO - The supplied category Entity 
      */
-    public static void setCategory(CategoryDTO categoryDTO) {
-        
+    public static void setCategory(CategoryDTO categoryDTO) {   
         Category category;
         Date now = new Date();
         
@@ -86,5 +91,28 @@ public class Categories {
             LOG.error("Error setting a category: " + e);
         }        
     }
-}
+    /**
+     * Delete the supplied Category Entity
+     * 
+     * @param categoryDTO - The supplied category Entity 
+     */
+    public static void deleteCategory(CategoryDTO categoryDTO) {
+        Category category;
+        
+        try (EntityManager em = StrutNotesDB.getInstance()
+                    .getEntityManagerFactory().createEntityManager()) {
+            
+            em.getTransaction().begin();
+            
+            category = em.find(Category.class, categoryDTO.getId());
 
+            em.remove(category);
+            
+            em.getTransaction().commit();
+        }
+        catch (Exception e) {
+            LOG.error("Error setting a category: " + e);
+        }        
+    }
+}
+// End of file

@@ -13,13 +13,16 @@ import uk.co.jamesrparsons.strutnotes.mapping.EntityMapping;
 import uk.co.jamesrparsons.strutnotes.model.NoteDTO;
 
 /**
- *
- * @author james
+ * A class that handles the data access to the Note Entity
  */
 public class Notes {
     private static final Logger LOG = LogManager.getLogger(Notes.class);
 
-    
+    /**
+     * Get a List of the NoteDTOs in the database
+     * 
+     * @return a List of NoteDTOs
+     */
     public static List<NoteDTO> getNotes() {
         List<NoteDTO> notesDTO = null;
         List<Note> notes;
@@ -33,7 +36,13 @@ public class Notes {
         }
         return notesDTO;
     }
-    
+    /**
+     * Get a Note from the database using a supplied id
+     * 
+     * @param id a long holding the id of the required NoteDTO
+     * 
+     * @return a NoteDTO of the required Note 
+     */
     public static NoteDTO getNote(long id) {
         NoteDTO noteDTO = null;
         Note note;
@@ -48,8 +57,7 @@ public class Notes {
         }
         
         return noteDTO;
-    }
-    
+    }    
     /**
      * Save the supplied Note Entity
      * 

@@ -39,7 +39,7 @@ public class Note {
     /**
      * Getter for id property
      * 
-     * @return 
+     * @return a long containing the current id
      */
     public long getId() {
         return id;
@@ -47,15 +47,15 @@ public class Note {
     /**
      * Setter for id property
      * 
-     * @param id 
+     * @param id a long containing the new id
      */
     public void setId(long id) {
         this.id = id;
     }
     /**
-     * Getter for noteNAme property
+     * Getter for noteName property
      * 
-     * @return 
+     * @return a String containing the current noteName value
      */
     public String getNoteName() {
         return noteName;
@@ -63,7 +63,7 @@ public class Note {
     /**
      * Setter for the noteName
      * 
-     * @param noteName 
+     * @param noteName a String containing the new noteName value
      */
     public void setNoteName(String noteName) {
         this.noteName = noteName;
@@ -71,7 +71,7 @@ public class Note {
     /**
      * Getter for noteContent
      * 
-     * @return 
+     * @return a String containing the current noteContent value
      */
     public String getNoteContent() {
         return noteContent;
@@ -79,7 +79,7 @@ public class Note {
     /**
      * Setter for noteContent
      * 
-     * @param noteContent 
+     * @param noteContent a String containing the new noteContent value 
      */
     public void setNoteContent(String noteContent) {
         this.noteContent = noteContent;
@@ -87,14 +87,15 @@ public class Note {
     /**
      * Getter for the list of categories associated with the Note
      * 
-     * @return 
+     * @return a current List of Categories  associated with the Note
      */
     public List<Category> getCategories() {
         return categories;
     }
     /**
      * Setter for the list of categories associated with the Note
-     * @param categories 
+     * 
+     * @param categories a new List of Categories to be associated with the Note 
      */
     public void setCategories(List<Category> categories) {
         this.categories = categories;
@@ -102,7 +103,7 @@ public class Note {
     /**
      * Getter for the createDate
      * 
-     * @return 
+     * @return a Date containing the current createDate value
      */
     public Date getCreateDate() {
         return createDate;
@@ -110,7 +111,7 @@ public class Note {
     /**
      * Setter for the createDate
      * 
-     * @param createDate 
+     * @param createDate a Date containing the new createDate value 
      */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
@@ -118,7 +119,7 @@ public class Note {
     /**
      * Getter for the modifyDate
      * 
-     * @return 
+     * @return a Date containing the current modifyDate value
      */
     public Date getModifyDate() {
         return modifyDate;
@@ -126,7 +127,7 @@ public class Note {
     /**
      * Setter for the modifyDate
      * 
-     * @param modifyDate 
+     * @param modifyDate a Date containing the new modifyDate value
      */
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
@@ -134,7 +135,7 @@ public class Note {
     /**
      * Represent the entity as a String
      * 
-     * @return 
+     * @return String representing the state of the object
      */
     @Override
     public String toString() {
