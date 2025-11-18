@@ -33,5 +33,21 @@
             <result name="input">/WEB-INF/note.jsp</result>
             <result name="success" type="redirectAction" >index</result>
         </action>
+
+        <action name="listCategories" 
+                class="uk.co.jamesrparsons.strutnotes.action.CategoryMaintAction" 
+                method="list">
+            <result name="success">/WEB-INF/categorylist.jsp</result>
+            <interceptor-ref name="basicStack" />
+        </action>
+
+        <action name="*Categorymaint" 
+                class="uk.co.jamesrparsons.strutnotes.action.CategoryMaintAction" 
+                method="{1}">
+            <interceptor-ref name="paramsPrepareParamsStack" />
+            <result name="input">/WEB-INF/category.jsp</result>
+            <result name="success" type="redirectAction" >listCategories</result>
+        </action>
+
     </package>
 </struts>
